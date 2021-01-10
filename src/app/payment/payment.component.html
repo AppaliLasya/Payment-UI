@@ -1,0 +1,183 @@
+<script type="text/javascript">
+    var myapp = angular.module('payment', []);
+    myapp.controller("expressionController", function ($scope,$window) {
+   
+    $window.alert('Succeeded!!! Have a happy journey')
+  
+    
+    })
+    </script>
+<main>
+	<h1>Select Mode of Payment</h1>
+
+	<section class="collapsible" [@collapse]="collapsed">
+		<form>
+            <div class="card m-3">
+                <h5 class="card-header">Credit Card/Debit Card</h5>
+                <div class="card-body">
+                   
+                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label>Title</label>
+                                <select formControlName="title" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.title.errors }">
+                                    <option value=""></option>
+                                    <option value="Mr">Mr</option>
+                                    <option value="Mrs">Mrs</option>
+                                    <option value="Miss">Miss</option>
+                                    <option value="Ms">Ms</option>
+                                </select>
+                                <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                                    <div *ngIf="f.title.errors.required">Title is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group col-5">
+                                <label>Name Of The Card</label>
+                                <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+                                <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                    <div *ngIf="f.name.errors.required"> Name of the card is required</div>
+                                </div>
+                            </div>
+                            <div class="form-group col-5">
+                                <label>CVV</label>
+                                <input type="text" formControlName="cvv" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cvv.errors }" />
+                                <div *ngIf="submitted && f.cvv.errors" class="invalid-feedback">
+                                    <div *ngIf="f.cvv.errors.required">CVV is required</div>
+                                    <div class="form-text text-danger" *ngIf="registerForm.controls.cvv.errors">{{registerForm.controls.cvv.errors.onlyDigit.message}}<br/></div>	   
+
+            
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Card Number</label>
+                            <input type="text" formControlName="cardnumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cardnumber.errors }" />
+                            <div *ngIf="submitted && f.cardnumber.errors" class="invalid-feedback">
+                                <div *ngIf="f.cardnumber.errors.required">Cardnumber is required</div>
+                                <!-- <div *ngIf="registerForm.controls.phoneNumber.errors">{{registerForm.controls.cardnumber.errors.message}}
+                               ></div> <!-- <div *ngIf="f.cardnumber.errors.minlength.required && f.cardnumber.errors.maxlength.required">CVV -->
+                                <div class="form-text text-danger" *ngIf="registerForm.controls.cardnumber.errors">{{registerForm.controls.cardnumber.errors.onlyDigit.message}}<br/></div>	   
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label>Expiration Month</label>
+                                <select formControlName="month" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.month.errors }">
+                                    <option value=""></option>
+                                    <option value="Mr">January</option>
+                                    <option value="Mrs">February</option>
+                                    <option value="Miss">March</option>
+                                    <option value="Ms">April</option>
+                                    <option value="Mr">May</option>
+                                    <option value="Mrs">June</option>
+                                    <option value="Miss">July</option>
+                                    <option value="Ms">August</option>
+                                    <option value="Mr">September</option>
+                                    <option value="Mrs">October</option>
+                                    <option value="Miss">November</option>
+                                    <option value="Ms">December</option>
+                                </select>
+                                 <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                                    <div *ngIf="f.title.errors.required">Expiration month is required</div>
+                                </div>
+                            </div>
+                                <!-- <div *ngIf="submitted && f.month.errors" class="invalid-feedback">
+                                    <div *ngIf="f.month.errors.required">Expiration Month is required</div>
+                                </div>
+                                <!-- <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                    <div *ngIf="f.password.errors.required">Password is required</div>
+                                    <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                                </div> -->
+                       
+                            <div class="form-group col">
+                                <label>Expiration Year</label>
+                                <select formControlName="year" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.year.errors }">
+                                    <option value=""></option>
+                                    <option value="Mr">2020</option>
+                                    <option value="Mrs">2021</option>
+                                    <option value="Miss">2022</option>
+                                    <option value="Ms">2023</option>
+                                    <option value="Mr">2024</option>
+                                    <option value="Mrs">2025</option>
+                                    <option value="Miss">2026</option>
+                                    <option value="Ms">2027</option>
+                                    <option value="Mr">2028</option>
+                                    <option value="Mrs">2029</option>
+                                    <option value="Miss">2030</option>
+                                    <option value="Ms">2031</option>
+                                </select>
+                                <div *ngIf="submitted && f.year.errors" class="invalid-feedback">
+                                    <div *ngIf="submitted && f.year.errors" class="invalid-feedback"></div>
+                                    <div *ngIf="f.year.errors.required">Expiration Year is required</div>
+                                </div>
+                                <!-- <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
+                                <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+                                    <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>
+                                    <div *ngIf="f.confirmPassword.errors.mustMatch">Passwords must match</div>
+                                </div> -->
+                            </div>
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" formControlName="acceptTerms" id="acceptTerms" class="form-check-input" [ngClass]="{ 'is-invalid': submitted && f.acceptTerms.errors }" />
+                            <label for="acceptTerms" class="form-check-label">Accept Terms & Conditions</label>
+                            <div *ngIf="submitted && f.acceptTerms.errors" class="invalid-feedback">Accept Ts & Cs is required</div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-primary mr-1">Submit</button>
+                            <button class="btn btn-secondary"  type="reset" (click)="onReset()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+			<!-- <div class="col-50">
+				<label for="cname">Name on Card</label>
+				<input type="text" id="cname" name="cardname" placeholder="name of the card">
+				<label for="ccnum">Credit card number</label>
+				<input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+				<label for="expmonth">Exp Month</label>
+				<input type="text" id="expmonth" name="expmonth" placeholder="September">
+				<div class="row">
+					<div class="col-50">
+						<label for="expyear">Exp Year</label>
+						<input type="text" id="expyear" name="expyear" placeholder="2018">
+              </div>
+						<div class="col-50">
+							<label for="cvv">CVV</label>
+							<input type="text" id="cvv" name="cvv" placeholder="352">
+              </div>
+						</div>
+					</div>
+					<button type="submit">submit</button> -->
+		</form>
+	</section>
+	<br>
+	<section>
+		<button class="collapsible" *ngIf="collapsed" (click)="expand()">Credit Card or Debit Card</button>
+		<button class="collapsible" *ngIf="!collapsed" (click)="collapse()">Pay it </button>
+
+	</section>
+	<br>
+	<section>
+		<button type="button" class="collapsible"><input type="radio" id="cod" name="paymentMode" value="cod">Cash on Delivery</button>
+		
+	</section>
+	<div class="content">
+        
+		<!-- <p>You are using cash on delivery!!</p> -->
+	</div>
+	<br>
+	<section>
+
+		<button type="button" class="collapsible"><input type="radio" id="wallet" name="paymentMode" value="wallet">Wallet</button>
+		<div class="content">
+			<p>Your wallet amount is Rs.30</p>
+		</div>
+
+	</section>
+	<br>
+
+
+    <button type="submit"  value="Show Alert" ng-click="showalertmessage()" >submit</button>
+    <!-- submit has to be redirected to dasboard -->
+</main>
